@@ -1,19 +1,26 @@
-name: Build Android APK
+[app]
 
-on: [push]
+# Title of your application
+title = Bedrock Better
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build with Buildozer
-        uses: Artemis-ce/buildozer-action@v1
-        with:
-          command: buildozer android debug
-          subfolder: .
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
-        with:
-          name: bedrock-better-apk
-          path: bin/*.apk
+# Package name
+package.name = bedrockbetter
+
+# Package domain
+package.domain = org.bedrock
+
+# Source files to include
+source.include_exts = py,json
+
+# Application requirements
+requirements = python3,kivy,android
+
+# Supported orientations
+orientation = portrait
+
+# Permissions needed for network routing
+android.permissions = INTERNET, ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE
+
+[buildozer]
+log_level = 2
+warn_on_root = 1
